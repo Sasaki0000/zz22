@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="zz2.dao.DataMapper">
+    <select id="SelectInformationById" parameterType="Integer" resultMap="selectInformation">
+        select * from processed_data where id = #{id}
+    </select>
+    <resultMap id="selectInformation" type="Data">
+        <id property="id" column="id"/>
+        <result property="ListName" column="list_name"/>
+        <result property="BookName" column="book_name"/>
+        <result property="TopList" column="top_list"/>
+        <result property="Information" column="information"/>
+        <result property="DataOrigin" column="data_origin"/>
+    </resultMap>
+    
+    <select id="selectListByListName" resultMap="selectInformation">
+        select * from processed_data where list_name=#{ListName} and data_origin=#{DataOrigin}
+    </select>
+    
+    <insert id="addList">
+        insert into processed_data (list_name,book_name,top_list,information,data_origin)
+        values (#{listName},#{bookName},#{topList},#{information},#{dataOrigin})
+    </insert>
+
+    <select id="selectListByRuleId" resultMap="selectInformation">
+            select * from processed_data where  data_origin=#{ruleId}
+        </select>
+
+</mapper>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="zz2.dao.CrawlerDartaMapper">
+    <select id="RandomSelectBook" parameterType="String" resultMap="RandomSelectBookMap">
+        select * from crawlerdatas where serials=#{serial} order by rand() limit 6
+    </select>
+    <resultMap id="RandomSelectBookMap" type="CrawlerData">
+        <id property="id" column="id"/>
+        <result property="bookName" column="book_name"/>
+        <result property="writerName" column="writer_name"/>
+        <result property="time" column="time"/>
+        <result property="label" column="label"/>
+        <result property="recommonend" column="recommomend"/>
+        <result property="weekCRecommonend" column="week_Recommomend"/>
+        <result property="click" column="click"/>
+        <result property="words" column="words"/>
+        <result property="serials" column="serials"/>
+        <result property="bookLink" column="booklink"/>
+        <result property="coverLink" column="coverlink"/>
+    </resultMap>
+
+    <select id="selectWriterInformation" parameterType="String" resultMap="RandomSelectBookMap">
+            select words from crawlerdatas where writer_name=#{name}
+        </select>
+        <select id="selectWriterBook" parameterType="String" resultMap="RandomSelectBookMap">
+            select * from crawlerdatas where writer_name=#{name}
+        </select>
+
+    <select id="selectBookByBookName" parameterType="String" resultMap="RandomSelectBookMap">
+            select * from crawlerdatas where book_name=#{bookName}
+        </select>
+        <select id="selectAllBook"  resultMap="RandomSelectBookMap">
+            select * from crawlerdatas limit 1000
+        </select>
+
+</mapper>

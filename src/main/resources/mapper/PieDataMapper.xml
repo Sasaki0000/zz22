@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="zz2.dao.PieDataMapper">
+<select id="selectPieInformation"  resultMap="selectPieInformationMap">
+        select * from processed_data where list_name=#{pieName} and data_origin=#{dataOrigin}
+    </select>
+    <resultMap id="selectPieInformationMap" type="PieData">
+        <id property="id" column="id"/>
+        <result property="pieName" column="list_name"/>
+        <result property="dataName" column="book_name"/>
+        <result property="percentge" column="information"/>
+        <result property="dataOrigin" column="data_origin"/>
+    </resultMap>
+
+</mapper>

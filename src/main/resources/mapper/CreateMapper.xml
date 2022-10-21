@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="zz2.dao.CreateMapper">
+    <!--方法                  入参                     出参-->
+    <insert id="setRule">
+            insert into rule
+                (dataSize,maxRecommend,maxClick,maxWeekRecommend
+                ,Words1,Words2,Words3,Words4,create_date)
+            values(#{dataSize},#{maxRecommend},#{maxClick},#{maxWeekRecommend},
+                   #{Words1},#{Words2},#{Words3},#{Words4},#{dateStringPaese});
+        </insert>
+
+
+        <select id="getRule" resultMap="selectRule">
+            select * from rule
+        </select>
+
+    <resultMap id="selectRule" type="Rule">
+            <id property="id" column="id"/>
+            <result property="dataSize" column="dataSize"/>
+            <result property="maxRecommend" column="maxRecommend"/>
+            <result property="maxClick" column="maxClick"/>
+            <result property="maxWeekRecommend" column="maxWeekRecommend"/>
+            <result property="Words1" column="Words1"/>
+            <result property="Words2" column="Words2"/>
+            <result property="Words3" column="Words3"/>
+            <result property="Words4" column="Words4"/>
+            <result property="createDate" column="create_date"/>
+        </resultMap>
+
+
+    <delete id="deleteRule">
+        DELETE FROM rule WHERE id=#{id};
+    </delete>
+</mapper>
